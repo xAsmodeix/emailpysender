@@ -18,4 +18,4 @@ Settings:
 Example
 =======
 
-![Prewiew](https://github.com/serbernar/emailpysender/pic.jpg "Example")
+![Prewiew](https://github.com/serbernar/emailpysender/blob/master/pic.jpg "Example")
