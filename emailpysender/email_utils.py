@@ -2,8 +2,10 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
-import premailer
 from emailpysender.settings import *
+from multiprocessing.dummy import Pool as ThreadPool
+
+import premailer
 
 
 class Sender:
@@ -13,7 +15,14 @@ class Sender:
         'yandex': ['smtp.yandex.ua', '465'],
     }
 
-    def __init__(self):
+    @staticmethod
+    def compress_html(filename):
+        with open(MESSAGE_DIR + '/' + filename, 'r', encoding='utf-8') as f:
+            new_html = premailer.Premailer(f.read())
+            html = new_html.transform()
+        return html
+
+    def __init__(self, pools):
         if '' in list(SENDER['default'].values()) + [EMAIL_LIST, SMTP_SERVER]:
             raise Exception('Please, configure settings.')
         self.server_name = self.servers[SMTP_SERVER]
@@ -22,6 +31,11 @@ class Sender:
         self._password = SENDER['default'].get('PASSWORD')
         self.subject = MESSAGE_CONF['subject']
         self.user = MESSAGE_CONF['from']
+        self.attachments = os.listdir(ATTACHMENTS_DIR)
+        try:
+            self.pools = int(pools) if pools else None
+        except TypeError:
+            print('Pools value must be integer')
 
     def _get_email_list(self):
         return [line.strip() for line in open(self.email_list)]
@@ -35,14 +49,14 @@ class Sender:
         server.sendmail(self._username, to_addrs, msg.as_string())
         server.quit()
 
-    def form_message(self, to_addrs, attachmens=None):
+    def _form_message(self, to_addrs):
         msg = MIMEMultipart()
         msg['Subject'] = self.subject
         msg['From'] = self.user
         msg['To'] = to_addrs
         body = MIMEText(self.compress_html('index.html'), 'html')
         msg.attach(body)
-        if attachmens:
+        if self.attachments:
             for attachment in os.listdir(ATTACHMENTS_DIR):
                 cover_letter = MIMEApplication(open(os.path.join(ATTACHMENTS_DIR, attachment), "rb").read())
                 cover_letter.add_header('Content-Disposition', 'attachment', filename=attachment)
@@ -54,12 +68,15 @@ class Sender:
             print('SMTPAuthenticationError')
             print("Email not sent to", to_addrs)
 
-    def compress_html(self, filename):
-        with open('message/' + filename, 'r', encoding='utf-8') as f:
-            new_html = premailer.Premailer(f.read())
-            html = new_html.transform()
-        return html
+    def _sender(self, to_addr):
+        self._send_mail(to_addr, self._form_message(to_addr))
 
     def send_mail(self):
-        for to_addr in self._get_email_list():
-            self._send_mail(to_addr, self.form_message(to_addr, attachmens=True))
+        if self.pools:
+            pool = ThreadPool(self.pools)
+            pool.map(self._sender, self._get_email_list())
+            pool.join()
+            pool.close()
+        else:
+            for to_addr in self._get_email_list():
+                self._sender(to_addr)
