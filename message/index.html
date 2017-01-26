@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <style>
+        @font-face {
+            font-family: 'Roboto Slab';
+            src: url("../font/RobotoSlab-Light.eot");
+            src: local('Roboto Slab Light'), local('RobotoSlab-Light'), url("../font/RobotoSlab-Light.eot?#iefix") format('embedded-opentype'), url("../font/RobotoSlab-Light.woff2") format('woff2'), url("../font/RobotoSlab-Light.woff") format('woff'), url("../font/RobotoSlab-Light.ttf") format('truetype');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Roboto Slab';
+            src: url("../font/RobotoSlab-Thin.eot");
+            src: local('Roboto Slab Thin'), local('RobotoSlab-Thin'), url("../font/RobotoSlab-Thin.eot?#iefix") format('embedded-opentype'), url("../font/RobotoSlab-Thin.woff2") format('woff2'), url("../font/RobotoSlab-Thin.woff") format('woff'), url("../font/RobotoSlab-Thin.ttf") format('truetype');
+            font-weight: 100;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Roboto Slab';
+            src: url("../font/RobotoSlab-Regular.eot");
+            src: local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url("../font/RobotoSlab-Regular.eot?#iefix") format('embedded-opentype'), url("../font/RobotoSlab-Regular.woff2") format('woff2'), url("../font/RobotoSlab-Regular.woff") format('woff'), url("../font/RobotoSlab-Regular.ttf") format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Roboto Slab';
+            src: url("../font/RobotoSlab-Bold.eot");
+            src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url("../font/RobotoSlab-Bold.eot?#iefix") format('embedded-opentype'), url("../font/RobotoSlab-Bold.woff2") format('woff2'), url("../font/RobotoSlab-Bold.woff") format('woff'), url("../font/RobotoSlab-Bold.ttf") format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            font: inherit;
+            box-sizing: border-box;
+        }
+
+        article,
+        aside,
+        details,
+        figcaption,
+        figure,
+        footer,
+        header,
+        hgroup,
+        main,
+        nav,
+        section,
+        summary {
+            display: block;
+        }
+
+        audio,
+        canvas,
+        progress,
+        video {
+            display: inline-block;
+            vertical-align: baseline;
+        }
+
+        audio:not([controls]) {
+            display: none;
+            height: 0;
+        }
+
+        [hidden],
+        template {
+            display: none;
+        }
+
+        html {
+            font-family: sans-serif;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-focus-ring-color: rgba(255, 255, 255, 0);
+            cursor: default;
+        }
+
+        body {
+            font-size: 100%;
+            line-height: 1;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            background: transparent;
+        }
+
+        *:focus,
+        *:active,
+        *:hover {
+            outline: none;
+        }
+
+        hr {
+            box-sizing: content-box;
+            height: 0;
+        }
+
+        ol,
+        ul {
+            list-style: none;
+        }
+
+        pre {
+            -moz-tab-size: 4;
+            tab-size: 4;
+            white-space: pre-wrap;
+        }
+
+        q {
+            quotes: '\201C' '\201D' '\2018' '\2019';
+        }
+
+        img {
+            border: none;
+        }
+
+        svg:not(:root) {
+            overflow: hidden;
+        }
+
+        button,
+        input {
+            line-height: normal;
+        }
+
+        button,
+        select {
+            text-transform: none;
+        }
+
+        button {
+            overflow: visible;
+        }
+
+        button,
+        html input[type='button'],
+        input[type='reset'],
+        input[type='submit'] {
+            -webkit-appearance: button;
+            cursor: pointer;
+        }
+
+        button[disabled],
+        html input[disabled] {
+            cursor: default;
+        }
+
+        input[type='checkbox'],
+        input[type='radio'] {
+            box-sizing: border-box;
+        }
+
+        input[type='number']::-webkit-inner-spin-button,
+        input[type='number']::-webkit-outer-spin-button {
+            height: auto;
+        }
+
+        input[type='search'] {
+            -webkit-appearance: textfield;
+            box-sizing: content-box;
+        }
+
+        input[type='search']::-webkit-search-cancel-button,
+        input[type='search']::-webkit-search-decoration {
+            -webkit-appearance: none;
+        }
+
+        button::-moz-focus-inner,
+        input::-moz-focus-inner {
+            border: none;
+            padding: 0;
+        }
+
+        textarea {
+            overflow: auto;
+            vertical-align: top;
+        }
+
+        button,
+        input,
+        select[multiple],
+        textarea {
+            background-image: none;
+        }
+
+        input,
+        select,
+        textarea {
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        input,
+        textarea {
+            resize: none;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
+        [placeholder]:focus::-webkit-input-placeholder {
+            color: transparent;
+        }
+
+        [placeholder]:focus::-moz-placeholder {
+            color: transparent;
+        }
+
+        [placeholder]:focus:-ms-input-placeholder {
+            color: transparent;
+        }
+
+        [placeholder]:focus::placeholder {
+            color: transparent;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        .form {
+            width: 30.625em;
+            padding: 0.9375em 1.5625em;
+            border: 0.125em solid #31006e;
+            border-radius: 1.25em;
+            color: #31006e;
+        }
+
+        .form__name {
+            position: relative;
+            top: -0.1875em;
+            text-align: left;
+            text-transform: uppercase;
+            font-size: 1.125em;
+            font-weight: 900;
+        }
+
+        .form__main::after {
+            display: block;
+            content: "";
+            clear: both;
+        }
+
+        .form__logo {
+            float: left;
+            width: 5.9375em;
+            height: 5.9375em;
+            margin-top: 0em;
+            margin-bottom: 0.3125em;
+            margin-left: 0.9375em;
+            margin-right: 2.1875em;
+            text-transform: uppercase;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -ms-flex-align: center;
+            align-items: center;
+            border: 0.1875em solid #31006e;
+            border-radius: 50%;
+        }
+
+        .form__name {
+            display: block;
+        }
+
+        .form__description {
+            margin-top: 1.25em;
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.875em;
+            font-weight: 6.25em;
+            line-height: 1.2;
+        }
+
+        .form__event {
+            font-weight: 900;
+        }
+
+        .form__event:before {
+            content: '«';
+        }
+
+        .form__event:after {
+            content: '»';
+        }
+
+        .form__date {
+            font-size: 0.875em;
+            text-indent: 0.9375em;
+            line-height: 1.2;
+            margin-top: 1.25em;
+        }
+
+        .form__result {
+            margin: 1.25em 0em;
+            font-size: 0.875em;
+            text-indent: 0.9375em;
+        }
+
+        .form__data {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            font-size: 0.875em;
+        }
+
+        .form__data input {
+            text-transform: uppercase;
+            padding: 0.125em 0.625em;
+            border: 0.125em solid #31006e;
+            border-radius: 0.3125em;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+        }
+
+        .form__fail {
+            color: #f00;
+        }
+
+        .form__fail input {
+            border-color: #f00;
+            color: #f00;
+        }
+
+        .form__fail input::-webkit-input-placeholder {
+            color: #f00;
+        }
+
+        .form__fail input::-moz-placeholder {
+            color: #f00;
+        }
+
+        .form__fail input:-ms-input-placeholder {
+            color: #f00;
+        }
+
+        .form__fail input::placeholder {
+            color: #f00;
+        }
+
+        .form__form-label {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            margin: 0.3125em 0;
+        }
+
+        .form__form-label span:first-child {
+            width: 6.25em;
+        }
+
+        .form__last-name span:after,
+        .form__first-name span:after,
+        .form__post span:after,
+        .form__lpu span:after,
+        .form__email span:after {
+            content: '*';
+        }
+
+        .form__post,
+        .form__email {
+            margin-top: 0.9375em;
+        }
+
+        .form__buttons {
+            margin-top: 1.25em;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-pack: distribute;
+            justify-content: space-around;
+            -ms-flex-align: center;
+            align-items: center;
+            font-size: 0.75em;
+        }
+
+        .form__buttons input {
+            width: 10em;
+            padding: 0.3125em 0em;
+            text-transform: uppercase;
+            font-weight: 900;
+            color: #fff;
+            border: 0.0625em solid #31006e;
+            border-radius: 0.3125em;
+            background: none;
+            background-color: #31006e;
+        }
+
+        .form__buttons input:first-child {
+            margin-left: 0.9375em;
+        }
+
+        .form__buttons input:last-child {
+            margin-right: 0.9375em;
+        }
+
+        .form__note {
+            font-size: 0.625em;
+            margin-top: 1.875em;
+        }
+
+        .form__note:before {
+            content: '*';
+            padding-right: 0.3125em;
+        }
+
+        .form__success {
+            display: none;
+            margin-top: 2.5em;
+        }
+
+        .form__received {
+            margin: 0 auto;
+            margin-bottom: 1.5625em;
+            width: 80%;
+            padding: 0.625em 1.875em;
+            color: #fff;
+            background-color: #009a33;
+            border-radius: 0.625em;
+            line-height: 1.2;
+            font-weight: 900;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .form__letter {
+            text-indent: 0.9375em;
+        }
+
+        .page {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -ms-flex-align: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        html {
+            font-size: 1em;
+        }
+    </style>
+    <meta name="imagetoolbar" content="no">
+    <meta name="msthemecompatible" content="no">
+    <meta name="cleartype" content="on">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="address=no">
+    <meta name="google" value="notranslate">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link sizes="57x57" href="/apple-touch-icon-57x57.png" rel="apple-touch-icon">
+    <link sizes="114x114" href="/apple-touch-icon-114x114.png" rel="apple-touch-icon">
+    <link sizes="72x72" href="/apple-touch-icon-72x72.png" rel="apple-touch-icon">
+    <link sizes="144x144" href="/apple-touch-icon-144x144.png" rel="apple-touch-icon">
+    <link sizes="60x60" href="/apple-touch-icon-60x60.png" rel="apple-touch-icon">
+    <link sizes="120x120" href="/apple-touch-icon-120x120.png" rel="apple-touch-icon">
+    <link sizes="76x76" href="/apple-touch-icon-76x76.png" rel="apple-touch-icon">
+    <link sizes="152x152" href="/apple-touch-icon-152x152.png" rel="apple-touch-icon">
+    <link sizes="180x180" href="/apple-touch-icon-180x180.png" rel="apple-touch-icon">
+    <link sizes="192x192" href="/favicon-192x192.png" rel="icon" type="image/png">
+    <link sizes="160x160" href="/favicon-160x160.png" rel="icon" type="image/png">
+    <link sizes="96x96" href="/favicon-96x96.png" rel="icon" type="image/png">
+    <link sizes="16x16" href="/favicon-16x16.png" rel="icon" type="image/png">
+    <link sizes="32x32" href="/favicon-32x32.png" rel="icon" type="image/png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="application-name" content="">
+    <meta name="msapplication-tooltip" content="">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/mstile-large.png">
+    <meta name="msapplication-starturl" content="https://csssr.github.io/csssr-project-template/">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="msapplication-square70x70logo" content="/mstile-small.png">
+    <meta name="msapplication-square150x150logo" content="/mstile-medium.png">
+    <meta name="msapplication-wide310x150logo" content="/mstile-wide.png">
+    <meta name="msapplication-square310x310logo" content="/mstile-large.png">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+</head>
+<body class="page">
+<form action="form.php" class="form">
+    <div class="form__main">
+        <div class="form__logo">Лого</div>
+        <div class="form__name">Регистрационная форма</div>
+        <div class="form__description">На научную конференцию
+            <br/>
+            <span class="form__event">Open vs. lap
+						<br> выбор герниолога: открытая или лапароскопическая хирургия?</span>
+        </div>
+    </div>
+    <div class="form__date">Мероприятие состоится 17 февраля 2017 года в Москве на базе ФНКЦ ФМБА России</div>
+    <div class="form__result">По окончании выдаются сертификаты с балами POX.</div>
+    <div class="form__data">
+        <label class="form__form-label form__last-name">
+            <span class="form__form-elem">Фамилия</span>
+            <input name="last-name" required="required" type="text"/>
+        </label>
+        <label class="form__form-label form__first-name">
+            <span class="form__form-elem">Имя</span>
+            <input name="first-name" required="required" type="text"/>
+        </label>
+        <label class="form__form-label form__patronymic">
+            <span class="form__form-elem">Отчество</span>
+            <input name="patronymic" type="text"/>
+        </label>
+        <label class="form__form-label form__post">
+            <span class="form__form-elem">Должность</span>
+            <input name="post" required="required" type="text"/>
+        </label>
+        <label class="form__form-label form__lpu">
+            <span class="form__form-elem">ЛПУ</span>
+            <input name="lpu" required="required" type="text"/>
+        </label>
+        <label class="form__form-label form__email">
+            <span class="form__form-elem">E-mail</span>
+            <input type="email" name="email" required="required"/>
+        </label>
+        <label class="form__form-label form__tel">
+            <span class="form__form-elem">Телефон</span>
+            <input type="tel" name="tel"/>
+        </label>
+    </div>
+    <div class="form__success">
+        <div class="form__received">Регистрационная форма получена!</div>
+        <div class="form__letter">На ваш E-mail (указанный при регистрации) высланно письмо подтверждение регистрации, пригласительный и программа
+            конференции.
+        </div>
+    </div>
+    <div class="form__buttons">
+        <input type="reset" value="Сбросить" class="form__reset"/>
+        <input type="submit" value="Отправить" class="form__send"/>
+    </div>
+    <div class="form__note">Обязательное поле</div>
+</form>
+<script>
+    (function () {
+        'use strict';
+        if (!('FormData' in window)) {
+            return;
+        }
+        let form = document.querySelector('.form');
+        form.setAttribute('novalidate', 'novalidate');
+        let inputField = form.querySelectorAll('.form__data input');
+        let requiredInput = Array.from(inputField).filter(item = > item.hasAttribute('required')
+        )
+        ;
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            let data = new FormData(form);
+            let xhr = new XMLHttpRequest();
+            let ready = false;
+
+            Array.from(inputField).forEach(item = > item.parentNode.classList.remove('form__fail')
+            )
+            ;
+            Array.from(requiredInput).forEach(item = > item.addEventListener('click', function (e) {
+                this.placeholder = '';
+                this.parentNode.classList.remove('form__fail');
+            })
+            )
+            ;
+
+
+            requiredInput.forEach(function (item) {
+                if (!item.value) {
+                    item.placeholder = 'Не заполнено обязательное поле';
+                    item.parentNode.className += ' form__fail';
+                }
+            });
+
+            if (Array.from(requiredInput).every(item = > item.value))
+            {
+                ready = true;
+            }
+
+            if (ready) {
+                let href = form.getAttribute('action');
+                xhr.open('post', href + '?' + (new Date()).getTime());
+                xhr.addEventListener('readystatechange', function () {
+                    if (xhr.readyState === 4) {
+                        let success = form.querySelector('.form__success');
+                        let inf = form.querySelector('.form__data');
+                        let buttons = form.querySelector('.form__buttons');
+                        let note = form.querySelector('.form__note');
+
+                        inf.style.display = 'none';
+                        note.style.display = 'none';
+                        buttons.style.display = 'none';
+                        success.style.display = 'block';
+                    }
+                });
+                xhr.send(data);
+            }
+        });
+
+    })();
+
+
+</script>
+</body>
+</html>
