@@ -2,20 +2,20 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-MESSAGE_DIR = os.path.join(BASE_DIR, 'message')
-ATTACHMENTS_DIR = os.path.join(MESSAGE_DIR, 'attacments')
+CONFIG_DIR = os.path.join(BASE_DIR, 'configs')
+ATTACHMENTS_DIR = os.path.join(BASE_DIR, 'configs', 'attachments')
 
 SMTP_SERVER = 'gmail'
-EMAIL_LIST = 'email_list.txt'
+EMAIL_LIST = os.path.join(CONFIG_DIR, 'email_list.txt')
 
 SENDER = {
     'default': {
         'USERNAME': 'example@gmail.com',
-        'PASSWORD': 'your_password',
+        'PASSWORD': 'password',
     }
 }
 
 MESSAGE_CONF = {
-    'subject': 'Приглашение!',
+    'subject': 'Some text',
     'from': SENDER['default']['USERNAME'],
 }

@@ -3,16 +3,17 @@ emailpysender
 
 Small library for sending html emails with attachments.
 
+You must enable support for third-party apps in the settings of mail.
 
 Settings:
 =========
 
- - SMTP_SERVER: can be a 'gmail', 'yandex' or 'mail'(mail.ru), but gmail don't supporting CSS
+ - SMTP_SERVER: choose gmail, outlook, mailru or yandex
  - USERNAME: your email
- - PASSWORD: your password. You must be to be activate support another apps in your mail provider.
- - ATTACHMENT_DIR: This files added in email, and not be added if directory to be empty
- - MESSAGE_CONF: subject(subject mail -> title mail)
- - EMAIL_LIST: txt file with mailboxes which send-to, support one mailbox for line.
+ - PASSWORD: your password
+ - ATTACHMENT_DIR: These files will be added to the letter, and if the directory is empty, not added
+ - MESSAGE_CONF: subject(subject letter -> title letter)
+ - EMAIL_LIST: TXT file with the recipient's mailbox, supports one mailbox for the line
 
 
 Example
