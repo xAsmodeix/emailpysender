@@ -1,9 +1,10 @@
 emailpysender
 =============
 
-Small library for sending html emails with attachments.
-
+The small library for sending emails in HTML with attachments.
 You must enable support for third-party apps in the settings of mail.
+version: 0.0.1
+
 
 Settings:
 =========
@@ -19,4 +20,4 @@ Settings:
 Example
 =======
 
-![Prewiew](https://github.com/serbernar/emailpysender/blob/master/pic.jpg "Example")
+![Preview](https://github.com/serbernar/emailpysender/blob/master/pic.jpg "Example email letter")

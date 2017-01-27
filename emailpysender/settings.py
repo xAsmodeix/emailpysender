@@ -16,6 +16,6 @@ SENDER = {
 }
 
 MESSAGE_CONF = {
-    'subject': 'Some text',
+    'subject': 'Приглашение!',
     'from': SENDER['default']['USERNAME'],
 }
